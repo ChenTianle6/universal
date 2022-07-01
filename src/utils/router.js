@@ -4,7 +4,7 @@
  */
 const getChildrenRoutes = (routes) => {
   const result = []
-  routes.forEach(item => {
+  routes.forEach((item) => {
     if (item.children && item.children.length > 0) {
       result.push(...item.children)
     }
@@ -19,8 +19,8 @@ export const filterRouters = (routes) => {
   // childrenRoutes 所有的子路由
   const childrenRoutes = getChildrenRoutes(routes)
   // routes 完整的路由 16 数据
-  return routes.filter(route => {
-    return !childrenRoutes.find(childrenRoute => {
+  return routes.filter((route) => {
+    return !childrenRoutes.find((childrenRoute) => {
       return childrenRoute.path === route.path
     })
   })
@@ -41,20 +41,20 @@ const isNull = (data) => {
 /**
  * 将所有的一级路由数据处理成菜单数据
  */
+
 export const generateMenus = (routes) => {
   const result = []
   routes.forEach((item) => {
     if (isNull(item.meta) && isNull(item.children)) return
+    console.log(item)
 
     if (isNull(item.meta) && !isNull(item.children)) {
       result.push(...generateMenus(item.children))
       return
     }
-
-    // 获取三条数据的path路径
     const routePath = item.path
 
-    let route = result.find(item => item.path === routePath)
+    let route = result.find((route) => route.path === routePath)
 
     if (!route) {
       route = {
@@ -72,7 +72,5 @@ export const generateMenus = (routes) => {
       route.children.push(...generateMenus(item.children))
     }
   })
-
-  console.log(result)
   return result
 }
