@@ -1,5 +1,5 @@
-import store from '@/store'
-import router from '@/router'
+import store from '../store'
+import router from '../router'
 export function resetRouter() {
   if (
     store.getters.userInfo &&

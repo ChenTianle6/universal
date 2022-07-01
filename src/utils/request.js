@@ -1,3 +1,30 @@
+/**
+ *
+ * // v1 https://www.baidu.com
+ *
+ * // v2 https://www.jd.com
+ *
+ * // v3 https://www.taobao.com
+ *
+ *
+ * 引入axios
+ *
+ * 创建axios实例对象
+ *
+ * 创建请求拦截器
+ *
+ * 创建响应拦截器
+ *
+ * 统一传参方式   处理 get请求方式依旧可以使用data方式传参
+ *
+ * 全局loading加载
+ *
+ * 处理路由切换接口重复请求
+ *
+ * 导出axios实例对象
+ *
+ */
+
 // 导入axios
 import axios from 'axios'
 
@@ -70,6 +97,12 @@ service.interceptors.response.use((response) => {
     store.dispatch('user/lgout')
     router.push('/login')
   }
+
+  // 单用户登录
+  // if (error.response && error.response.data && error.response.data.code === 401) {
+  //   store.dispatch('user/lgout')
+  //   router.push('/login')
+  // }
 
   // 响应失败进行信息提示
   _showError(error.message)
