@@ -3,17 +3,18 @@
     <svg-icon icon="hamburger-opened"></svg-icon>
   </div>
 </template>
+
 <script setup>
 </script>
 <style scoped lang='scss'>
 .hamburger{
-  width: 50px;
-  height: 50px;
+  width : 50px;
+  height : 50px;
   text-align: center;
   cursor: pointer;
-  transition: 0.1s;
+  transition : 0.1s;
 }
 .hamburger:hover{
-  background-color: rgba(0, 0, 0, 0.2)
+  background-color : rgba(0,0,0, 0.2)
 }
 </style>

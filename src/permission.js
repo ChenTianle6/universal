@@ -1,15 +1,3 @@
-/**
- *
- * 登录 token
- *  进入到登录  跳转到登录之前的页面
- *  进入到登录以后页面  可以进入
- *
- * 未登录
- *  没有token
- *    进入的是登录 进入
- *    进入的不是登录页 跳转到登录页
- *
- */
 import router from './router'
 import store from './store'
 
@@ -29,8 +17,6 @@ router.beforeEach(async (to, from, next) => {
         if (response) {
           // 获取用户所拥有的路由权限
           const { permission } = response
-          // 调用vuex里面filterRoutes 在这个方法里面过滤出当前用户所拥有的私有路由表数据
-          // 获取到当前登录用户所拥有的私有路由表
           const filterRoutes = await store.dispatch('permission/filterRoutes', permission.menus)
           // 遍历用户所拥有的私有路由表, 并且将用户所拥有的私有路由表添加到完整的路由中
           filterRoutes.forEach(item => {
@@ -52,11 +38,3 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 })
-
-/**
-           * 私有路由表通过router.addRoute 动态添加到路由表中
-           *
-           * 浏览器刷新页面无法加载问题
-           *
-           * 退出的时候删除添加的路由表
-           */
